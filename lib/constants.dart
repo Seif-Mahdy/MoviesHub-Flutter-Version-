@@ -1,0 +1,1 @@
+import 'dart:ui';const KPrimaryColor = Color.fromRGBO(255, 163, 26, 1);
