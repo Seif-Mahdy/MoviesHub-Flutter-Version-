@@ -29,12 +29,15 @@ class MovieOfTheWeek extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Text(
-                        movie.getName(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'SecularOne',
-                            fontSize: constraints.maxHeight*0.075),
+                      Container(
+                        width: constraints.maxWidth*0.59,
+                        child: Text(
+                          movie.getName(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'SecularOne',
+                              fontSize: constraints.maxHeight*0.065),
+                        ),
                       ),
                       StarRow(movie.getRating(), MainAxisAlignment.start, constraints.maxHeight*0.1),
                       SizedBox(
