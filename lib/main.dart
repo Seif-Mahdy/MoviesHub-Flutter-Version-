@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movieshub/pages/home.dart';
 import 'package:provider/provider.dart';
 import 'pages/login.dart';
 import 'provider/admin.dart';

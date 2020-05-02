@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieshub/constants.dart';
+import 'package:movieshub/pages/home.dart';
 import 'package:movieshub/pages/signup.dart';
 import 'package:movieshub/provider/admin.dart';
 import 'package:movieshub/provider/provider.dart';
@@ -118,6 +119,7 @@ class _LoginState extends State<Login> {
                                 builder: (context) => RaisedButton(
                                   onPressed: () {
                                     _validateUser(context);
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
                                   },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
