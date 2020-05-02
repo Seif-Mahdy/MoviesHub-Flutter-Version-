@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String _hint;
+  final String hint;
   final Function onSave;
 
-  CustomTextField([this._hint, this.onSave]);
+  CustomTextField({this.hint, this.onSave});
 
   // ignore: missing_return
   IconData getIcon() {
-    switch (_hint) {
+    switch (hint) {
       case "Email":
         return Icons.email;
         break;
@@ -20,6 +20,8 @@ class CustomTextField extends StatelessWidget {
       case "Name":
         return Icons.person;
         break;
+      default:
+        return null;
     }
   }
 
@@ -27,16 +29,16 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       onSaved: onSave,
-      obscureText: (_hint == 'Password') ? true : false,
+      obscureText: (hint == 'Password') ? true : false,
       validator: (value) {
         if (value.isEmpty) {
-          return '$_hint Can\'t Be Empty';
+          return '$hint Can\'t Be Empty';
         }
         return null;
       },
       cursorColor: KPrimaryColor,
       decoration: InputDecoration(
-        hintText: 'Enter Your $_hint',
+        hintText: 'Enter Your $hint',
         prefixIcon: Icon(
           getIcon(),
           color: KPrimaryColor,
