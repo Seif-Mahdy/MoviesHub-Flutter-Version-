@@ -13,12 +13,12 @@ class Movie {
         map['Director'], map['Duration'], map['ReleaseYear']);
   }
 
-  Map toMap(Movie movie) {
+  Map<dynamic,dynamic> toMap(Movie movie) {
     return {
       'Name': movie._name,
       'Rating': movie._rating,
       'PosterUrl': movie._posterUrl,
-      'Genere': movie._genere,
+      'Genere': movie._genere.toString(),
       'Duration': movie._duration,
       'Director': movie._director,
       'ReleaseYear': movie._releaseYear

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieshub/constants.dart';
+import 'package:movieshub/pages/adminhome.dart';
 import 'package:movieshub/pages/home.dart';
 import 'package:movieshub/pages/signup.dart';
 import 'package:movieshub/provider/admin.dart';
@@ -15,7 +16,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final String id = 'login';
   final _key = GlobalKey<FormState>();
   final _auth = Auth();
   String email;
@@ -37,19 +37,14 @@ class _LoginState extends State<Login> {
               Column(
                 children: <Widget>[
                   ///image
-                  Container(
-                      height: MediaQuery.of(context).size.height * 0.21,
-                      width: MediaQuery.of(context).size.width,
-                      child:
-                          Container(child: Image.asset('lib/images/logo.png'))),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.09,
                   ),
-
-                  ///text
                   Padding(
+
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Container(
+                     // color: Colors.red,
                       height: MediaQuery.of(context).size.height * 0.17,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
@@ -82,6 +77,16 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+
+                  ///text
+                  Container(
+                      //color: Colors.blue,
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top:25,bottom: 20),
+                        child: Image.asset('lib/images/logo.png'),
+                      )),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
@@ -90,20 +95,21 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
+                     // color: Colors.green,
                       // height: MediaQuery.of(context).size.height * 0.42,
                       width: MediaQuery.of(context).size.width,
                       child: Form(
                         key: _key,
                         child: Column(
                           children: <Widget>[
-                            CustomTextField("Email", (value) {
+                            CustomTextField(hint:"Email",onSave: (value) {
                               email = value;
                             }),
 //
                             SizedBox(
                               height: 20,
                             ),
-                            CustomTextField("Password", (value) {
+                            CustomTextField(hint:"Password",onSave: (value) {
                               password = value;
                             }),
 //
@@ -119,7 +125,6 @@ class _LoginState extends State<Login> {
                                 builder: (context) => RaisedButton(
                                   onPressed: () {
                                     _validateUser(context);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
                                   },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
@@ -154,6 +159,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -239,7 +245,7 @@ class _LoginState extends State<Login> {
           try {
             await _auth.signIn(email, password);
             modelHud.changeIsShow(false);
-
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminHome()));
           } catch (e) {
             modelHud.changeIsShow(false);
             Scaffold.of(context).showSnackBar(SnackBar(
@@ -272,6 +278,7 @@ class _LoginState extends State<Login> {
         try {
           await _auth.signIn(email, password);
           modelHud.changeIsShow(false);
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
         } catch (e) {
           modelHud.changeIsShow(false);
           Scaffold.of(context).showSnackBar(SnackBar(
